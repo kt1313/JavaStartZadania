@@ -1,14 +1,16 @@
 package JavaStartZadania;
 
+import java.util.Random;
+
 public class Zad17_ACRoom {
     private int roomSpace;
-    private int conditioner;
+    private Zad17_ACConditioner conditioner;
     private boolean acOn;
     int actualTemperature;
     int reqTemperature;
 
 
-    public Zad17_ACRoom(int roomSpace, int conditioner, boolean acOn, int actualTemperature, int reqTemperature) {
+    public Zad17_ACRoom(int roomSpace, Zad17_ACConditioner conditioner, boolean acOn, int actualTemperature, int reqTemperature) {
         this.roomSpace = roomSpace;
         this.conditioner = conditioner;
         this.acOn = acOn;
@@ -24,11 +26,16 @@ public class Zad17_ACRoom {
         this.reqTemperature = reqTemperature;
     }
 
-    public int getConditioner() {
-        return conditioner;
+    public Zad17_ACConditioner getConditioner() {
+        Zad17_ACConditioner conditioner=null;
+        Random random=new Random();
+        int rand= random.nextInt();
+        System.out.println(rand);
+        if(rand<0.1){return new Zad17_BasicAirConditioner();}
+        else{return  new Zad17_ProAirConditioner();}
     }
 
-    public void setConditioner(int conditioner) {
+    public void setConditioner(Zad17_ACConditioner conditioner) {
         this.conditioner = conditioner;
     }
 
@@ -56,8 +63,4 @@ public class Zad17_ACRoom {
         this.acOn = acOn;
     }
 
-    public void setTemperature() {
-        int actualTemp = getActualTemperature() - getConditioner() / getRoomSpace();
-
-    }
 }
