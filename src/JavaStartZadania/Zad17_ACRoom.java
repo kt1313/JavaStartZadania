@@ -6,19 +6,20 @@ public class Zad17_ACRoom {
     private int roomSpace;
     private Zad17_ACConditioner conditioner;
     private boolean acOn;
-    int actualTemperature;
-    int reqTemperature;
+    double actualTemperature;
+    double reqTemperature;
+    int roomNr;
 
 
-    public Zad17_ACRoom(int roomSpace, Zad17_ACConditioner conditioner, boolean acOn, int actualTemperature, int reqTemperature) {
+    public Zad17_ACRoom(int roomSpace, Zad17_ACConditioner conditioner,  double actualTemperature, double reqTemperature) {
         this.roomSpace = roomSpace;
         this.conditioner = conditioner;
-        this.acOn = acOn;
+       // this.acOn = acOn;
         this.actualTemperature = actualTemperature;
-        this.reqTemperature=reqTemperature;
+        this.reqTemperature = reqTemperature;
     }
 
-    public int getReqTemperature() {
+    public double getReqTemperature() {
         return reqTemperature;
     }
 
@@ -27,23 +28,29 @@ public class Zad17_ACRoom {
     }
 
     public Zad17_ACConditioner getConditioner() {
-        Zad17_ACConditioner conditioner=null;
-        Random random=new Random();
-        int rand= random.nextInt();
+        return conditioner;
+    }
+
+    public static Zad17_ACConditioner findConditioner() {
+        Random random = new Random();
+        int rand = random.nextInt();
         System.out.println(rand);
-        if(rand<0.1){return new Zad17_BasicAirConditioner();}
-        else{return  new Zad17_ProAirConditioner();}
+        if (rand < 0.1) {
+            return new Zad17_BasicAirConditioner();
+        } else {
+            return new Zad17_ProAirConditioner();
+        }
     }
 
     public void setConditioner(Zad17_ACConditioner conditioner) {
         this.conditioner = conditioner;
     }
 
-    public int getActualTemperature() {
+    public double getActualTemperature() {
         return actualTemperature;
     }
 
-    public void setActualTemperature(int actualTemperature) {
+    public void setActualTemperature(double actualTemperature) {
         this.actualTemperature = actualTemperature;
     }
 
@@ -63,4 +70,36 @@ public class Zad17_ACRoom {
         this.acOn = acOn;
     }
 
+    public void setReqTemperature(double reqTemperature) {
+        this.reqTemperature = reqTemperature;
+    }
+
+    public int getRoomNr() {
+        return roomNr;
+    }
+
+    public void setRoomNr(int roomNr) {
+        this.roomNr = roomNr;
+    }
+
+    public boolean isTemperatureSetUp() {
+        if (getReqTemperature() > getActualTemperature()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public  void printOut(Zad17_ACRoom room){
+        //System.out.println();
+        //for (int i=0;i< rooms.length;i++) {
+            System.out.printf("Room %d, temperatura zadana: %.2f, temperatura aktualna: %.2f, klimatyzator: %s.\n", room.getRoomNr(),
+                    room.getReqTemperature(),
+                    +room.getActualTemperature(),room.getConditioner());
+        }
+
+    public double coolRoom(){
+        if(!isTemperatureSetUp()){
+        return getConditioner().cooldownRoom(getActualTemperature(),getRoomSpace());}
+        return getActualTemperature();
+    }
 }
