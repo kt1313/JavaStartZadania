@@ -16,7 +16,8 @@ public class Zad18_Tree implements Zad18_Drawable{
             for(int k=0;k<stars;k++)System.out.print('*');
             for (int l=0;l<empties;l++) System.out.print(' ');
             empties--;
-            stars++;
+            stars+=2;
+            System.out.println();
         }
         sc.close();
 

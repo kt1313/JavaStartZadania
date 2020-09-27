@@ -8,9 +8,7 @@ public class Zad18_Square implements Zad18_Drawable {
     @Override
     public void draw() {
         Scanner sc = new Scanner(System.in);
-        //Zad18_ControlApp.userReq();
         System.out.println("Podaj długość boku: ");
-        sc.nextLine();
         a = sc.nextInt();
         for (int i = 0; i < a; i++) {
             for (int j = 0; j < a; j++) {
