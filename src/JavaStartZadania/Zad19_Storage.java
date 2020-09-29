@@ -8,19 +8,20 @@ import java.util.Scanner;
 
 public class Zad19_Storage {
     List<Zad19_Product> products = new ArrayList<>();
-     static String fileName;
+    private static final String PRODUCT_LIST = "C:\\Users\\Dell\\IdeaProjects\\JavaStartZadania\\src\\storage.csv";
+    static String fileName;
      static int numberOfLines;
     Scanner sc = new Scanner(System.in);
 
-    public void getCompanyName(){
+    public String getFileName(){
         System.out.println("Podaj nazwę pliku");
-     fileName= sc.nextLine();
+     return  sc.nextLine();
     }
 
 
-    public  void readNumberOfLines(String fileName) throws IOException, ClassNotFoundException {
+    public  void readNumberOfLines() throws IOException, ClassNotFoundException {
         try {
-            Scanner sc = new Scanner(new File(fileName));
+            Scanner sc = new Scanner(new File(PRODUCT_LIST));
             sc.nextLine();
             while ((sc.nextLine()) != null) {
                 numberOfLines++;
@@ -30,22 +31,32 @@ public class Zad19_Storage {
             e.printStackTrace();
         }
     }
-    public Zad19_Product readFile()throws IOException, ClassNotFoundException {
+    public  List<Zad19_Product> readFile()throws IOException, ClassNotFoundException {
+
         List<Zad19_Product> products = new ArrayList<>();
 
         try {
             Scanner sc = new Scanner(new File(fileName));
             sc.nextLine();
-            for (int i = 1; i < numberOfLines; i++) {
+            for (Zad19_Product p : products
+            ) {
                 String line = sc.nextLine();
-                clients[i] = addClient(line);
+                p = addProduct(line);
             }
             sc.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return clients;
+        return products;
+    }
     public void printProduct(){
 
     }
+        public  Zad19_Product addProduct(String line) {
+            String[] splittedLine = null;
+            splittedLine = line.split(";");
+            String name = splittedLine[0];
+            int amount = Integer.parseInt(splittedLine[1]);
+            return new Zad19_Product(name, amount);
+        }
 }
