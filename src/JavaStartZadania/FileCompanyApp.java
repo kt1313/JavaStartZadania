@@ -32,7 +32,6 @@ public class FileCompanyApp {
                 }
             }
                 sc.close();
-
     }
 
     private static void writeFile(FileCompany_43 company) {
@@ -69,10 +68,4 @@ public class FileCompanyApp {
         }
         return company;
     }
-
-
-
-
-
-
 }

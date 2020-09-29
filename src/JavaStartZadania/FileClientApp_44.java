@@ -9,15 +9,10 @@ public class FileClientApp_44 {
     private static double maxSpendings = 0;
     private static int macSpendingsId = 0;
 
-
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         readNumberOfLines("clients.csv");
         readFileAndCreateTableOfClients();
-
-
-
     }
-
     private static void readNumberOfLines(String CLIENTS_LIST) throws IOException, ClassNotFoundException {
         try {
             Scanner sc = new Scanner(new File(CLIENTS_LIST));
