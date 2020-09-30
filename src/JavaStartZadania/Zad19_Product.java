@@ -23,4 +23,16 @@ public class Zad19_Product {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void printStars(int amount){
+        double round=Math.round(amount/10);
+        for (int i=0;i<=round;i++){
+            System.out.print('*');
+        }
+
+    }
+    @Override
+    public String toString() {
+        return name  +", (" + amount +") ";
+    }
 }

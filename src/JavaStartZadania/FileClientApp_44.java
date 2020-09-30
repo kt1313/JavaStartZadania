@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class FileClientApp_44 {
-    private static final String CLIENTS_LIST = "clients";
+    private static final String CLIENTS_LIST = "C:\\Users\\Dell\\IdeaProjects\\JavaStartZadania\\src\\clients.csv";
     private static int numberOfLines = 0;
     private static double maxSpendings = 0;
     private static int macSpendingsId = 0;
