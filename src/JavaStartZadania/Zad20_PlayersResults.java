@@ -26,20 +26,6 @@ public class Zad20_PlayersResults {
 
     }
 
-    public static int chooseSort() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Wybierz sposób sortowania:");
-        System.out.println("1 - po nickname");
-        System.out.println("2 - po punktach");
-        int choice = sc.nextInt();
-        sc.close();
-        if (choice == 1) return 1;
-        else if (choice == 2) return 2;
-        else {
-            System.out.println("Wybierz właściwie!");
-            return 0;
-        }
-    }
 }
 
 

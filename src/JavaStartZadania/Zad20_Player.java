@@ -23,10 +23,6 @@ import java.util.Objects;
         return points;
     }
 
-    public void setPoints(int points) {
-        this.points = points;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
