@@ -1,6 +1,8 @@
 package JavaStartZadania;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,19 +19,28 @@ public class Zad19_Storage {
         return sc.nextLine();
     }
 
-
+    //metody z pakietu New IO (nio):
     public static List<String> readFile(String fileName) {
-        List<String> allLines = new ArrayList<>();
-        try (Scanner scanner = new Scanner(new File(fileName))) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                allLines.add(line);
-            }
-        } catch (FileNotFoundException e) {
-            System.err.println("No such file: " + fileName);
+        try {
+            return Files.readAllLines(Paths.get(fileName));
+        } catch (IOException e) {
+            System.err.println("No such file");
         }
-        return allLines;
+        return new ArrayList<>();
     }
+//to samo tylko dłużej:
+//    public static List<String> readFile(String fileName) {
+//        List<String> allLines = new ArrayList<>();
+//        try (Scanner scanner = new Scanner(new File(fileName))) {
+//            while (scanner.hasNextLine()) {
+//                String line = scanner.nextLine();
+//                allLines.add(line);
+//            }
+//        } catch (FileNotFoundException e) {
+//            System.err.println("No such file: " + fileName);
+//        }
+//        return allLines;
+//    }
 
     //    public  void readNumberOfLines() throws IOException, ClassNotFoundException {
 //        try {

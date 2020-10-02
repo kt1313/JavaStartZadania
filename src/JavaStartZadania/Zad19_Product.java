@@ -25,7 +25,7 @@ public class Zad19_Product {
     }
 
     public void printStars(int amount){
-        double round=Math.round(amount/10);
+        double round=Math.round((amount-5)/10);
         for (int i=0;i<=round;i++){
             System.out.print('*');
         }
