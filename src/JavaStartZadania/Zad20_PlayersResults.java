@@ -6,7 +6,7 @@ public class Zad20_PlayersResults {
 
 
     public static void byNickname(Zad20_Player[] listFirst) {
-        Arrays.parallelSort(listFirst, new Zad20_NicknameComparator());
+        Arrays.sort(listFirst, new Zad20_NicknameComparator());
         System.out.println("Sortowanie po 'nickname', (Comparator): ");
         for (Zad20_Player p : listFirst
         ) {
