@@ -2,7 +2,7 @@ package JavaStartZadania;
 
 import java.util.Objects;
 
-public class Zad22_Meal {
+public class Zad22_Meal implements Comparable<Zad22_Meal>{
     int mealNr;
     String mealName;
     double mealPrice;
@@ -54,8 +54,14 @@ public class Zad22_Meal {
 
     @Override
     public String toString() {
-        return "Posiłek: " +
-                "Nr" + mealNr +
-                ", " + mealName + ", Cena=" + mealPrice ;
+        return " " + mealName + ", Cena=" + mealPrice ;
+    }
+
+    @Override
+    public int compareTo(Zad22_Meal o) {
+        if (o.mealNr>getMealNr())return 1;
+        else if(o.mealNr<getMealNr())return -1;
+        else
+        return 0;
     }
 }
