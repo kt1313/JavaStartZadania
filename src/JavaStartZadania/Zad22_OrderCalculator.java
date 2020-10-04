@@ -1,6 +1,7 @@
 package JavaStartZadania;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Zad22_OrderCalculator {
     private static ArrayList<Integer> arrayOrder = new ArrayList<>();
@@ -83,5 +84,33 @@ public class Zad22_OrderCalculator {
         }
         return priceForOrder;
     }
+//          tworzymy zamówienie. Składa się na to wczytanie identyfikatorów dań poprzez metodę
+//          getDishesNumbers(). przekształcenie listy liczby na listę dań z użyciem metody Menu.convertIdsToDishes()
+//          i w końcu utworzenie nowego zamówienia, czyli obiektu Order,
 
+//    private List<Integer> getDishesNumbers() {
+//        Scanner scanner = new Scanner(System.in);
+//        String line = scanner.nextLine();
+//        String[] split = line.replaceAll(" ", "").split(",");
+//        return Arrays.stream(split)
+//                .map(Integer::valueOf)
+//                .collect(Collectors.toList());
+//    }
+
+
+//    Metoda convertIdsToDishes konwertuje listę typu Integer na listę typu Dish. Metoda ta będzie nam
+//    potrzebna do tego, że użytkownik wprowadzał będzie liczby z identyfikatorami dań, a my ostatecznie potrzebujemy
+//    listę potraw. Ponieważ u nas identyfikatory dań są o 1 większe od indeksów listy, to wystarczy odwołać się do
+//    elementów listy o indeksach "id-1" w celu pobrania odpowiedniej pozycji.
+//    public  static List<Dish> convertIdsToDishes(List<Integer> ids) {
+//        return ids.stream()
+//                .map(id -> MENU.get(id - 1))
+//                .collect(Collectors.toList());
+//    }
+
+
+//    za wyliczanie całkowitej opłaty za listę dań, co realizujemy w metodzie calculateDishesSum
+//    public static double calculateDishesSum(List<Dish> dishes) {
+//        return dishes.stream().mapToDouble(Dish::getPrice).sum();
+//    }
 }
