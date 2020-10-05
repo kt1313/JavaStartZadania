@@ -93,7 +93,7 @@ public class Zad22_OrderCalculator {
 //        String line = scanner.nextLine();
 //        String[] split = line.replaceAll(" ", "").split(",");
 //        return Arrays.stream(split)
-//                .map(Integer::valueOf)
+//                .map(Integer::valueOf)//zwraca integerową wartosc Stringa itp.
 //                .collect(Collectors.toList());
 //    }
 
