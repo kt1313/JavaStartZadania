@@ -8,12 +8,12 @@ import java.util.stream.Collectors;
 
 public class Zad21_MovieDatabase {
 
-    public static void main(String[] args) {
-        List<Zad21_Movie> moviesList = createMoviesList();
-        Comparator<Zad21_Movie> sortAlgorithm = getSortAlgorithm(moviesList);
-        moviesList.sort(sortAlgorithm);
-        print(moviesList);
-    }
+//    public static void main(String[] args) {
+//        List<Zad21_Movie> moviesList = createMoviesList();
+//        Comparator<Zad21_Movie> sortAlgorithm = getSortAlgorithm(moviesList);
+//        moviesList.sort(sortAlgorithm);
+//        print(moviesList);
+//    }
 
     private static List<Zad21_Movie> createMoviesList() {
         List<Zad21_Movie> movies = new ArrayList<>();
