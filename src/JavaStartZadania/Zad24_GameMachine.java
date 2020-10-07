@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Zad24_GameMachine {
     static List<Zad24_Game> gamesList = gamesListCreator();
+    static boolean gameInStore = true;
 
     public static List<Zad24_Game> gamesListCreator() {
         List<Zad24_Game> gamesList = new ArrayList<>();
@@ -22,10 +23,14 @@ public class Zad24_GameMachine {
         ) {
             if ((g.getName().equals(gameName))) {
                 chosenGame = g;
+                gameInStore=true;
+                return g;
             } else {
-                System.out.println("Nie znaleziono takiej gry.");
+                chosenGame = null;
+                gameInStore=false;
             }
         }
         return chosenGame;
     }
+
 }
