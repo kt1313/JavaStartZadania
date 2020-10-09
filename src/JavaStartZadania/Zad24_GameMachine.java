@@ -17,7 +17,7 @@ public class Zad24_GameMachine {
         return gamesList;
     }
 
-    public static Zad24_Game lookForGame(String gameName) {
+    public static Zad24_Game lookForGame(String gameName) throws Zad24_NoSuchGameException {
         Zad24_Game chosenGame = null;
         for (Zad24_Game g : gamesList
         ) {
@@ -25,9 +25,7 @@ public class Zad24_GameMachine {
                 chosenGame = g;
                 gameInStore=true;
                 return g;
-            } else {
-                chosenGame = null;
-                gameInStore=false;
+            } else{ throw new Zad24_NoSuchGameException ("Game not found "+gameName+" .");
             }
         }
         return chosenGame;

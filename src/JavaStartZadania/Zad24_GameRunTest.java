@@ -3,7 +3,7 @@ package JavaStartZadania;
 import java.util.List;
 
 public class Zad24_GameRunTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Zad24_NotEnoughMoneyException, Zad24_NoSuchGameException {
 
         List<Zad24_Game> gamesList = Zad24_GameMachine.gamesListCreator();
         String gameName = Zad24_GameController.readUserChoice();
