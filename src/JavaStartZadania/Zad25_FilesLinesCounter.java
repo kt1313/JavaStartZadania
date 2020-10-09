@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InaccessibleObjectException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,33 +12,52 @@ import java.util.Scanner;
 public class Zad25_FilesLinesCounter {
     static String directoryPath;
     static String filePath;
-    static List<String> filesArray=new ArrayList<>();
-    static int linesSum=0;
+    static List<File> filesArray = new ArrayList<>();
+    static int linesSum = 0;
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        readFolderPath();
+        directoryPath = readFolderPath();
+        //utworz Array z File'mi
+
         //isDirectoryOrFile
         //ifDirToListujZawartosc-->dirConsistsOf (tutaj rekursja az napotka file'a)
         // i foreach'em File f:dirConsistsOf{a w srodku:}
         //wywoluj readLines()
-        openFileAndCountLines();
+        //openFileAndCountLines();
         //sumuj do linesSum
         //obsluga wyjatkow
     }
 
-    private static void readFolderPath() {
+    private static String readFolderPath() throws InaccessibleObjectException{
         System.out.println("Podaj ścieżkę do folderu z plikami:");
         directoryPath = sc.nextLine();
-        //filesArray.add()
+        File file=new File(directoryPath);
+        if(file.isDirectory())
+        return directoryPath;
+        else return ("Wrong file path.");
     }
-public static boolean fileExists(String folderPath){
-         File file=new File(folderPath);
-        return file.exists();
 
-}
-    private static void openFileAndCountLines() throws IOException {
-        String fileName = " ";
+    public static boolean fileExists(String folderPath) {
+        File file = new File(folderPath);
+        return file.exists();
+    }
+
+    public static void createFilesArray() {
+filesArray=directoryPath.
+    }
+
+    public static void checkDirectoryAndStart() throws IOException {
+        for (File f : filesArray
+        ) {
+            if (f.isFile()) {
+                openFileAndCountLines(f);
+            }
+
+        }
+    }
+
+    private static void openFileAndCountLines(File fileName) throws IOException {
         var fileReader = new FileReader(fileName);
         var reader = new BufferedReader(fileReader);
 
