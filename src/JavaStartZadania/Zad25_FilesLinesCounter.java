@@ -12,29 +12,25 @@ import java.util.Scanner;
 public class Zad25_FilesLinesCounter {
     static String directoryPath;
     static String filePath;
-    static List<File> filesArray = new ArrayList<>();
+    static String[] filesArray;
     static int linesSum = 0;
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
         directoryPath = readFolderPath();
-        //utworz Array z File'mi
-
-        //isDirectoryOrFile
-        //ifDirToListujZawartosc-->dirConsistsOf (tutaj rekursja az napotka file'a)
-        // i foreach'em File f:dirConsistsOf{a w srodku:}
-        //wywoluj readLines()
-        //openFileAndCountLines();
-        //sumuj do linesSum
-        //obsluga wyjatkow
+        fileExists(directoryPath);
+        //sprawdz czy istnieje File i wtedy odpal readLines
+        checkDirectoryAndStart(directoryPath);
+        //a wewnatrz sumuj linie
+        System.out.println(linesSum);
     }
 
-    private static String readFolderPath() throws InaccessibleObjectException{
+    private static String readFolderPath() throws InaccessibleObjectException {
         System.out.println("Podaj ścieżkę do folderu z plikami:");
         directoryPath = sc.nextLine();
-        File file=new File(directoryPath);
-        if(file.isDirectory())
-        return directoryPath;
+        File file = new File(directoryPath);
+        if (file.isDirectory())
+            return directoryPath;
         else return ("Wrong file path.");
     }
 
@@ -43,18 +39,23 @@ public class Zad25_FilesLinesCounter {
         return file.exists();
     }
 
-    public static void createFilesArray() {
-filesArray=directoryPath.
-    }
 
-    public static void checkDirectoryAndStart() throws IOException {
-        for (File f : filesArray
-        ) {
-            if (f.isFile()) {
-                openFileAndCountLines(f);
+    public static void checkDirectoryAndStart(String directoryPath) throws IOException {
+        File file = new File(directoryPath);
+        filesArray = file.list();
+        try {
+            for (String f : filesArray
+            ) {
+                File f1 = new File(f);
+                if (f1.isFile()) {
+                    openFileAndCountLines(f1);
+                } else directoryPath = f1.toPath().toString();
+                checkDirectoryAndStart(directoryPath);
+
             }
-
+        } catch (Exception ex) {
         }
+        ;
     }
 
     private static void openFileAndCountLines(File fileName) throws IOException {
