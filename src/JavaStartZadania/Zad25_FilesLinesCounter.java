@@ -51,7 +51,6 @@ public class Zad25_FilesLinesCounter {
                     directoryPath = f1.toPath().toString();
                     checkDirectoryAndStart(directoryPath);
                 }else
-//                if (f1.isFile()) {//pokazuje, ze to nie jest File
                     openFileAndCountLines(f1);
             }
         } catch (Exception ex) {
@@ -60,7 +59,7 @@ public class Zad25_FilesLinesCounter {
     }
 
     private static void openFileAndCountLines(File fileName) throws IOException {
-        var fileReader = new FileReader(fileName);
+        var fileReader = new FileReader(directoryPath+"/"+fileName);
         var reader = new BufferedReader(fileReader);
 
         try (
