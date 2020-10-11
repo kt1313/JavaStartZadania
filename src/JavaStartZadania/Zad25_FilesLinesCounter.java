@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.InaccessibleObjectException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Zad25_FilesLinesCounter {
@@ -18,7 +16,7 @@ public class Zad25_FilesLinesCounter {
 
     public static void main(String[] args) throws IOException {
         directoryPath = readFolderPath();
-        fileExists(directoryPath);
+       // fileOrDirectoryExists(directoryPath);
         //sprawdz czy istnieje File i wtedy odpal readLines
         checkDirectoryAndStart(directoryPath);
         //a wewnatrz sumuj linie
@@ -28,15 +26,15 @@ public class Zad25_FilesLinesCounter {
     private static String readFolderPath() throws InaccessibleObjectException {
         System.out.println("Podaj ścieżkę do folderu z plikami:");
         directoryPath = sc.nextLine();
-        File file = new File(directoryPath);
-        if (file.isDirectory())
+       // File file = new File(directoryPath);
+        if (fileOrDirectoryExists(directoryPath))
             return directoryPath;
         else return ("Wrong file path.");
     }
 
-    public static boolean fileExists(String folderPath) {
+    public static boolean fileOrDirectoryExists(String folderPath) {
         File file = new File(folderPath);
-        return file.exists();
+        return (file.isFile()||file.isDirectory());
     }
 
 
@@ -47,11 +45,14 @@ public class Zad25_FilesLinesCounter {
             for (String f : filesArray
             ) {
                 File f1 = new File(f);
-                if (f1.isFile()) {
+                System.out.println(file.exists());
+                if(f1.isDirectory()){
+                    System.out.println(f1.isDirectory());
+                    directoryPath = f1.toPath().toString();
+                    checkDirectoryAndStart(directoryPath);
+                }else
+//                if (f1.isFile()) {//pokazuje, ze to nie jest File
                     openFileAndCountLines(f1);
-                } else directoryPath = f1.toPath().toString();
-                checkDirectoryAndStart(directoryPath);
-
             }
         } catch (Exception ex) {
         }
