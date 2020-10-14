@@ -7,28 +7,26 @@ import java.util.Scanner;
 public class Zad25_FilesLinesCounter {
     static String baseDir = null;
     static int lines = 0;
-    static String directoryPath;
-    static String filePath;
+    static String path;
     static File file;
     static int linesSum = 0;
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        directoryPath = readFolderPath();
+        path = readFolderPath();
         checkDirectoryAndStart(file);
-        //a wewnatrz sumuj linie
         System.out.println("Suma wszystkich linii we wszystkich plikach: " + linesSum);
     }
 
     private static String readFolderPath() throws InaccessibleObjectException {
         System.out.println();
         System.out.println("Podaj ścieżkę do folderu z plikami:");
-        directoryPath = sc.nextLine();
-        baseDir = directoryPath;
-        file = new File(directoryPath);
+        path = sc.nextLine();
+        baseDir = path;
+        file = new File(path);
         if (fileOrDirectoryExists(file))
-            return directoryPath;
-        else return ("Wrong file path.");
+            return path;
+        else return ("Błędna ścieżka.");
     }
 
     public static boolean fileOrDirectoryExists(File file) {
@@ -52,7 +50,7 @@ public class Zad25_FilesLinesCounter {
     private static void openFileAndCountLines(File fileName) throws IOException {
         var fileReader = new FileReader(fileName);
         var reader = new BufferedReader(fileReader);
-        File file1 = new File(directoryPath+\+"example.txt");
+        File file1 = new File(path+"/"+"example.txt");
 
         lines = 0;
         try (fileReader; reader;) {
@@ -60,11 +58,7 @@ public class Zad25_FilesLinesCounter {
                 lines++;
             }
             if (fileName.equals(file1)) {
-                var newFile = new FileWriter(fileName);
-                var bw = new BufferedWriter(newFile);
-                String additionalText = "extra text";
-                bw.write(additionalText);
-                bw.close();
+              addText(fileName);
             }
             System.out.println(file1.toString()+" "+fileName.toString());
             System.out.println(fileName.equals(file1));
@@ -72,6 +66,13 @@ public class Zad25_FilesLinesCounter {
             String relativeName = file.getAbsolutePath().replace(baseDir, "");
             System.out.println("Ilość wierszy w pliku: " + relativeName + " --> " + lines);
         }
+    }
+    private static void addText(File fileName) throws IOException {
+        var newFile = new FileWriter(fileName, true);
+        var bw = new BufferedWriter(newFile);
+        String additionalText = "\r\nextra text i ...nic";
+        bw.append(additionalText);
+        bw.close();
     }
 }
 
