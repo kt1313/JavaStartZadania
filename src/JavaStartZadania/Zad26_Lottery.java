@@ -10,6 +10,15 @@ public class Zad26_Lottery {
     static List<String> megaballAsStringArray = new ArrayList<>();
     static List<Integer> megaballArray = new ArrayList<>();
 
+    static SortedSet<Map.Entry<Integer, Integer>> sortedset = new TreeSet<Map.Entry<Integer, Integer>>(
+            new Comparator<Map.Entry<Integer, Integer>>() {
+                @Override
+                public int compare(Map.Entry<Integer, Integer> e2,
+                                   Map.Entry<Integer, Integer> e1) {
+                    return e1.getValue().compareTo(e2.getValue());
+                }
+            });
+
     public static void main(String[] args) {
         final String fileName = "C:\\Users\\Dell\\IdeaProjects\\JavaStartZadania\\src\\Lottery.csv";
 
@@ -36,6 +45,9 @@ public class Zad26_Lottery {
             System.err.println("Brak pliku " + fileName);
         }
         convertToHashTree(numbersArray);
+        System.out.println("tablica numerow malejaco: "+sortedset);
+        convertToHashTree(megaballArray);
+        System.out.println("tablica megaballi malejaco"+sortedset);
     }
 
     static ArrayList<Integer> splitAndChangeStringArrayToInteger(List<String> stringArray) {
@@ -59,37 +71,28 @@ public class Zad26_Lottery {
                 //tu tworzy numbersArray
                 numbersArray.add(singleNumbers[i]);
             }
-            System.out.println("To byl wydruk linii: " + j);
+           // System.out.println("To byl wydruk linii: " + j);
             j++;
         }
         return numbersArray;
     }
 
     private static void convertToHashTree(List<Integer> integerArray) {
+
         SortedMap<Integer, Integer> numbersTreeMap = new TreeMap<Integer, Integer>();
 
         for (Integer number : integerArray
         ) {
             int v = Collections.frequency(integerArray, number);
             if (numbersTreeMap != null && !numbersTreeMap.containsKey(number)) {
-                System.out.println(!numbersTreeMap.containsKey(number));
+                //System.out.println(!numbersTreeMap.containsKey(number));
                 numbersTreeMap.put(number, v);
-                System.out.println();
+                sortedset.addAll(numbersTreeMap.entrySet());
             }
         }
-
     }
 }
-//    SortedMap<String, Double> myMap = new TreeMap<String, Double>();
-//    myMap.put("a", 10.0);
-//    myMap.put("b", 9.0);
-//    myMap.put("c", 11.0);
-//    myMap.put("d", 2.0);
-//    sortedset.addAll(myMap.entrySet());
-//    System.out.println(sortedset);
-//    Output:
-//
-//            [d=2.0, b=9.0, a=10.0, c=11.0]
+
 
 
 
