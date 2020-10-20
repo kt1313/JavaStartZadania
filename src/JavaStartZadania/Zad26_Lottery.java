@@ -24,37 +24,28 @@ public class Zad26_Lottery {
                 int posOfNumbers = 1;
                 System.out.println(splittedLine[posOfNumbers]);
                 numbersAsStringsArray.add(splittedLine[posOfNumbers]);
-                System.out.println(splittedLine[posOfNumbers+1]);
-                megaballAsStringArray.add(splittedLine[posOfNumbers+1]);
+                System.out.println(splittedLine[posOfNumbers + 1]);
+                megaballAsStringArray.add(splittedLine[posOfNumbers + 1]);
             }
             //zamienia na Integery
             numbersArray = splitAndChangeStringArrayToInteger(numbersAsStringsArray);
             megaballArray = splitAndChangeStringArrayToInteger(megaballAsStringArray);
             //klasa Collections ma metodę frequency, ktora zlicza liczbe wystapien danego elementu
-            //ma tez swap do zamieniania miejscami
-        } catch(
-                FileNotFoundException e)
-        {
+        } catch (
+                FileNotFoundException e) {
             System.err.println("Brak pliku " + fileName);
         }
-        for (Integer n : numbersArray
-        ) {
-            System.out.print(n + " ");
-        }
-        System.out.println();
-        for (Integer n : megaballArray
-        ) {
-            System.out.print(n + " ");
-        }
+        convertToHashTree(numbersArray);
     }
-    static List<Integer> splitAndChangeStringArrayToInteger(List<String> stringArray) {
-        int iterationLimit=5;
-if(stringArray.equals(megaballAsStringArray)){
-iterationLimit=1;
-}
-        List<Integer> numbersArray = new ArrayList<>();
+
+    static ArrayList<Integer> splitAndChangeStringArrayToInteger(List<String> stringArray) {
+        int iterationLimit = 5;
+        if (stringArray.equals(megaballAsStringArray)) {
+            iterationLimit = 1;
+        }
+        ArrayList<Integer> numbersArray = new ArrayList<>();
         Integer[] singleNumbers;
-        int j=1;
+        int j = 1;
 
         for (String s : stringArray
         ) {
@@ -63,16 +54,42 @@ iterationLimit=1;
 
             for (int i = 0; i < iterationLimit; i++) {
                 String[] line = s.split(" ");
-                singleNumbers[i]=(Integer.parseInt(line[i]));
+                singleNumbers[i] = (Integer.parseInt(line[i]));
                 System.out.println(singleNumbers[i]);
+                //tu tworzy numbersArray
+                numbersArray.add(singleNumbers[i]);
             }
-            System.out.println("To byl wydruk linii: "+ j);
+            System.out.println("To byl wydruk linii: " + j);
             j++;
         }
         return numbersArray;
     }
 
+    private static void convertToHashTree(List<Integer> integerArray) {
+        SortedMap<Integer, Integer> numbersTreeMap = new TreeMap<Integer, Integer>();
+
+        for (Integer number : integerArray
+        ) {
+            int v = Collections.frequency(integerArray, number);
+            if (numbersTreeMap != null && !numbersTreeMap.containsKey(number)) {
+                System.out.println(!numbersTreeMap.containsKey(number));
+                numbersTreeMap.put(number, v);
+                System.out.println();
+            }
+        }
+
+    }
 }
+//    SortedMap<String, Double> myMap = new TreeMap<String, Double>();
+//    myMap.put("a", 10.0);
+//    myMap.put("b", 9.0);
+//    myMap.put("c", 11.0);
+//    myMap.put("d", 2.0);
+//    sortedset.addAll(myMap.entrySet());
+//    System.out.println(sortedset);
+//    Output:
+//
+//            [d=2.0, b=9.0, a=10.0, c=11.0]
 
 
 
