@@ -3,6 +3,7 @@ package JavaStartZadania;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Zad26_Lottery {
     static List<String> numbersAsStringsArray = new ArrayList<>();
@@ -31,9 +32,9 @@ public class Zad26_Lottery {
                 String line = sc.nextLine();
                 String[] splittedLine = line.split(",");
                 int posOfNumbers = 1;
-                System.out.println(splittedLine[posOfNumbers]);
+                //System.out.println(splittedLine[posOfNumbers]);
                 numbersAsStringsArray.add(splittedLine[posOfNumbers]);
-                System.out.println(splittedLine[posOfNumbers + 1]);
+                //System.out.println(splittedLine[posOfNumbers + 1]);
                 megaballAsStringArray.add(splittedLine[posOfNumbers + 1]);
             }
             //zamienia na Integery
@@ -45,9 +46,9 @@ public class Zad26_Lottery {
             System.err.println("Brak pliku " + fileName);
         }
         convertToHashTree(numbersArray);
-        System.out.println("tablica numerow malejaco: "+sortedset);
+        System.out.println("tablica numerow malejaco: "+ sortedset.stream().limit(10).collect(Collectors.toList()));
         convertToHashTree(megaballArray);
-        System.out.println("tablica megaballi malejaco"+sortedset);
+        System.out.println("tablica megaballi malejaco"+sortedset.stream().limit(3).collect(Collectors.toList()));
     }
 
     static ArrayList<Integer> splitAndChangeStringArrayToInteger(List<String> stringArray) {
@@ -67,7 +68,7 @@ public class Zad26_Lottery {
             for (int i = 0; i < iterationLimit; i++) {
                 String[] line = s.split(" ");
                 singleNumbers[i] = (Integer.parseInt(line[i]));
-                System.out.println(singleNumbers[i]);
+               // System.out.println(singleNumbers[i]);
                 //tu tworzy numbersArray
                 numbersArray.add(singleNumbers[i]);
             }
