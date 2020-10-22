@@ -1,7 +1,6 @@
 package JavaStartZadania;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -34,21 +33,21 @@ public class Zad26_Lottery {
                 int posOfNumbers = 1;
                 //System.out.println(splittedLine[posOfNumbers]);
                 numbersAsStringsArray.add(splittedLine[posOfNumbers]);
-                //System.out.println(splittedLine[posOfNumbers + 1]);
+                System.out.println(splittedLine[posOfNumbers + 1]);
                 megaballAsStringArray.add(splittedLine[posOfNumbers + 1]);
             }
             //zamienia na Integery
             numbersArray = splitAndChangeStringArrayToInteger(numbersAsStringsArray);
             megaballArray = splitAndChangeStringArrayToInteger(megaballAsStringArray);
-            //klasa Collections ma metodę frequency, ktora zlicza liczbe wystapien danego elementu
+            convertToHashTree(numbersArray);
+            System.out.println("tablica numerow malejaco: "+ sortedset.stream().limit(10).collect(Collectors.toList()));
+            convertToHashTree(megaballArray);
+            System.out.println("tablica megaballi malejaco"+sortedset.stream().limit(3).collect(Collectors.toList()));
         } catch (
                 FileNotFoundException e) {
             System.err.println("Brak pliku " + fileName);
         }
-        convertToHashTree(numbersArray);
-        System.out.println("tablica numerow malejaco: "+ sortedset.stream().limit(10).collect(Collectors.toList()));
-        convertToHashTree(megaballArray);
-        System.out.println("tablica megaballi malejaco"+sortedset.stream().limit(3).collect(Collectors.toList()));
+
     }
 
     static ArrayList<Integer> splitAndChangeStringArrayToInteger(List<String> stringArray) {
@@ -58,42 +57,51 @@ public class Zad26_Lottery {
         }
         ArrayList<Integer> numbersArray = new ArrayList<>();
         Integer[] singleNumbers;
-        int j = 1;
 
         for (String s : stringArray
         ) {
-
             singleNumbers = new Integer[iterationLimit];
 
             for (int i = 0; i < iterationLimit; i++) {
                 String[] line = s.split(" ");
                 singleNumbers[i] = (Integer.parseInt(line[i]));
-               // System.out.println(singleNumbers[i]);
                 //tu tworzy numbersArray
                 numbersArray.add(singleNumbers[i]);
             }
-           // System.out.println("To byl wydruk linii: " + j);
-            j++;
         }
         return numbersArray;
     }
 
     private static void convertToHashTree(List<Integer> integerArray) {
-
-        SortedMap<Integer, Integer> numbersTreeMap = new TreeMap<Integer, Integer>();
-
+            SortedMap<Integer, Integer> numbersTreeMap = new TreeMap<Integer, Integer>();
+        if (integerArray.equals(megaballArray)) {
+            numbersTreeMap.clear();
+            sortedset.clear();
+          }
         for (Integer number : integerArray
         ) {
             int v = Collections.frequency(integerArray, number);
             if (numbersTreeMap != null && !numbersTreeMap.containsKey(number)) {
-                //System.out.println(!numbersTreeMap.containsKey(number));
                 numbersTreeMap.put(number, v);
-                sortedset.addAll(numbersTreeMap.entrySet());
-            }
+            }else if(numbersTreeMap == null){numbersTreeMap.put(number, v);
+                }
         }
+        sortedset.addAll(numbersTreeMap.entrySet());
+
     }
 }
+//    Można by tutaj wykorzystać także bardziej współczesne podejście w oparciu o strumienie.
+//        W takim przypadku moglibyśmy wykorzystać BufferedReadera.
 
+//    List<Result> readResultsFromFile(String fileName) throws IOException {
+//        List<Result> results = new ArrayList<>();
+//        var fileReader = new FileReader(fileName);
+//        var bufferedReader = new BufferedReader(fileReader);
+//        bufferedReader.readLine(); //pomijamy nagłówek pliku
+//        return bufferedReader.lines()
+//                .map(Result::fromCsv)
+//                .collect(Collectors.toList());
+//    }
 
 
 
