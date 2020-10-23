@@ -9,15 +9,16 @@ public class Zad27_TeleBook {
 //    udostępniać metody do dodawania nowego kontaktu,
 //    usuwania istniejącego kontaktu po nazwie oraz wyszukiwania kontaktów po fragmencie nazwy lub numeru telefonu
 
-    private Map<String,Zad27_Contact> contactsMap=new TreeMap<>();
+    private Map<String, Zad27_Contact> contactsMap = new TreeMap<>();
     public List<Zad27_Contact> contacts = new ArrayList<>();
     //tworzymy dwie listy: nazw i numerow, aby latwiej szukac
     List<String> contactNames = new ArrayList<String>();
     List<String> contactNumbers = new ArrayList<String>();
 
-    public Zad27_TeleBook(Map<String, Zad27_Contact> contactsMap){
-        this.contactsMap=contactsMap;
+    public Zad27_TeleBook(Map<String, Zad27_Contact> contactsMap) {
+        this.contactsMap = contactsMap;
     }
+
     private void createStringArrayForNamesAndNumbers() {
         for (Zad27_Contact c : contacts
         ) {
@@ -29,11 +30,9 @@ public class Zad27_TeleBook {
         }
     }
 
-    public void addNewContact() {
-        System.out.println("Podaj nazwę kontaktu (imię i nazwisko lub ksywkę): ");
-        String contactName = sc.nextLine();
-        System.out.println("Podaj numer kontaktu: ");
-        String number = sc.nextLine();
+    public void addNewContact(String contactName, String number) {
+        if (contactName == null || number == null || contactName.isEmpty() || number.isEmpty())
+            throw new NullPointerException("Nie zostawiaj pustych danych!");
         contacts.add(new Zad27_Contact(contactName, number));
     }
 
@@ -41,20 +40,17 @@ public class Zad27_TeleBook {
         contacts.remove(contact);
     }
 
-    public List<String> findContact() {
+    public List<Zad27_Contact> findContact(String contactToFind) {
         //uzyc Collections.sort, potem tolowercase i zachowac cala liste z boku: List<> result
-
-        System.out.println("Podaj kontakt do wyszukania (cały, fragment nazwy lub numeru): ");
-        String contactToFind = sc.nextLine();
-        List<String> result = new ArrayList<String>();
-        for (String str : contactNames) {
+        List<Zad27_Contact> result = new ArrayList<Zad27_Contact>();
+        for (String str : contactsMap.keySet()) {
             if (str.toLowerCase().contains(contactToFind.toLowerCase())) {
-                result.add(str);
+                result.add(contactsMap.get(str));
             }
         }
-        for (String str : contactNumbers) {
-            if (str.toLowerCase().contains(contactToFind.toLowerCase())) {
-                result.add(str);
+        for (Zad27_Contact c : contactsMap.values()) {
+            if (c.getContactNr().contains(contactToFind.toLowerCase())) {
+                result.add(c);
             }
         }
         return result;
