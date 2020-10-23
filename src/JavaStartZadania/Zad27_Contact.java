@@ -1,37 +1,27 @@
 package JavaStartZadania;
 
 public class Zad27_Contact {
-    String firstName;
-    String surname;
-    int contactNr;
+    String contactName;
+    String contactNr;
 
-    public Zad27_Contact(String firstName, String surname, int contactNr) {
-        this.firstName = firstName;
-        this.surname = surname;
+    public Zad27_Contact(String contactName, String contactNr) {
+        this.contactName = contactName;
         this.contactNr = contactNr;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getContactName() {
+        return contactName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public int getContactNr() {
+    public String getContactNr() {
         return contactNr;
     }
 
-    public void setContactNr(int contactNr) {
+    public void setContactNr(String contactNr) {
         this.contactNr = contactNr;
     }
 }
