@@ -1,5 +1,7 @@
 package JavaStartZadania;
 
+import java.util.NoSuchElementException;
+
 enum Zad27_Options {
     ADD(0,"dodaj kontakt"), FIND(1,"szukaj kontaktu"),
     REMOVE(2,"usuń kontakt"), EXIT(3,"wyjście z programu");
@@ -20,6 +22,9 @@ enum Zad27_Options {
     }
 
     public Zad27_Options changeIntToChoiceString(int optionNr){
+       if(optionNr<=values().length||optionNr<0){
+           throw new NoSuchElementException("Nie istnieje taka opcja");
+       }
        Zad27_Options[] values=values();
         for (Zad27_Options opt:values
              ) {if(opt.getOptionNr()==optionNr) return opt;
