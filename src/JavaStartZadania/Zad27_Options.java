@@ -8,7 +8,7 @@ enum Zad27_Options {
     private int optionNr;
     private String description;
 
-   private Zad27_Options (int optionNr,String description){
+    Zad27_Options (int optionNr,String description){
        this.description=description;
        this.optionNr=optionNr;
    }
@@ -21,7 +21,7 @@ enum Zad27_Options {
         return description;
     }
 
-    public Zad27_Options changeIntToChoiceString(int optionNr){
+    public Zad27_Options changeIntToStringChoice(int optionNr){
        if(optionNr<=values().length||optionNr<0){
            throw new NoSuchElementException("Nie istnieje taka opcja");
        }
@@ -31,4 +31,11 @@ enum Zad27_Options {
 
         } return null;
     }
+
+    @Override
+    public String toString() {
+        return  optionNr + " - " + description;
+    }
+
+
 }

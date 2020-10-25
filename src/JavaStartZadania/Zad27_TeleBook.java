@@ -3,7 +3,6 @@ package JavaStartZadania;
 import java.util.*;
 
 public class Zad27_TeleBook {
-    public Scanner sc = new Scanner(System.in);
 
 //    TeleBook - klasa reprezentująca książkę adresową. Powinna przechowywać kolekcję kontaktów oraz
 //    udostępniać metody do dodawania nowego kontaktu,
@@ -14,6 +13,11 @@ public class Zad27_TeleBook {
     //tworzymy dwie listy: nazw i numerow, aby latwiej szukac
     List<String> contactNames = new ArrayList<String>();
     List<String> contactNumbers = new ArrayList<String>();
+
+    public Zad27_TeleBook() {
+    }
+
+    ;
 
     public Zad27_TeleBook(Map<String, Zad27_Contact> contactsMap) {
         this.contactsMap = contactsMap;
@@ -30,10 +34,11 @@ public class Zad27_TeleBook {
         }
     }
 
-    public void addNewContact(String contactName, String number) {
-        if (contactName == null || number == null || contactName.isEmpty() || number.isEmpty())
+    public void addNewContact(Zad27_Contact contact) {
+        if (contact.getContactName() == null || contact.getContactNr() == null || contact.getContactName().isEmpty()
+                || contact.getContactNr().isEmpty())
             throw new NullPointerException("Nie zostawiaj pustych danych!");
-        contacts.add(new Zad27_Contact(contactName, number));
+        contacts.add(contact);
     }
 
     public void removeContact(Zad27_Contact contact) {
