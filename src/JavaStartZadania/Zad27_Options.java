@@ -21,7 +21,7 @@ enum Zad27_Options {
         return description;
     }
 
-    public Zad27_Options changeIntToStringChoice(int optionNr){
+    public static Zad27_Options changeIntToOption(int optionNr){
        if(optionNr<=values().length||optionNr<0){
            throw new NoSuchElementException("Nie istnieje taka opcja");
        }
