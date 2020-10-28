@@ -10,14 +10,13 @@ public class Zad27_TeleBook {
 
     private Map<String, Zad27_Contact> contactsMap = new TreeMap<>();
     public List<Zad27_Contact> contacts = new ArrayList<>();
+
     //tworzymy dwie listy: nazw i numerow, aby latwiej szukac
     List<String> contactNames = new ArrayList<String>();
     List<String> contactNumbers = new ArrayList<String>();
 
     public Zad27_TeleBook() {
     }
-
-    ;
 
     public Zad27_TeleBook(Map<String, Zad27_Contact> contactsMap) {
         this.contactsMap = contactsMap;
@@ -39,10 +38,12 @@ public class Zad27_TeleBook {
                 || contact.getContactNr().isEmpty())
             throw new NullPointerException("Nie zostawiaj pustych danych!");
         contacts.add(contact);
+        contactsMap.put(contact.getContactName(), contact);
     }
 
-    public void removeContact(Zad27_Contact contact) {
-        contacts.remove(contact);
+    public void removeContact(String contactString) {
+        contacts.removeIf(c -> c.getContactName() == contactString);
+        contactsMap.remove(contactString);
     }
 
     public List<Zad27_Contact> findContact(String contactToFind) {
@@ -58,6 +59,19 @@ public class Zad27_TeleBook {
                 result.add(c);
             }
         }
+        for (Zad27_Contact c : result
+        ) {
+            System.out.println(c.getContactName() + " " + c.getContactNr());
+            System.out.println();
+        }
         return result;
+    }
+
+    public void printBook() {
+        System.out.println(contactsMap.values().toString());
+        for (Zad27_Contact c : contacts
+        ) {
+            System.out.println(c.contactName + " " + c.getContactNr());
+        }
     }
 }

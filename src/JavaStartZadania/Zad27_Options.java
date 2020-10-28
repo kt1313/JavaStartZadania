@@ -22,13 +22,13 @@ enum Zad27_Options {
     }
 
     public static Zad27_Options changeIntToOption(int optionNr){
-       if(optionNr<=values().length||optionNr<0){
+       if(optionNr>=(values().length)||optionNr<0){
+           System.out.println(values().length);
            throw new NoSuchElementException("Nie istnieje taka opcja");
        }
        Zad27_Options[] values=values();
         for (Zad27_Options opt:values
              ) {if(opt.getOptionNr()==optionNr) return opt;
-
         } return null;
     }
 
