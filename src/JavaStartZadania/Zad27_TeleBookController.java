@@ -43,8 +43,7 @@ public class Zad27_TeleBookController {
                 break;
             case REMOVE:
                 String findToRemove = getContactToFindData();
-                teleBook.removeContact(findToRemove);
-                teleBook.printBook();
+                teleBook.removeContact(teleBook.findContact(findToRemove));
                 break;
         }
     }

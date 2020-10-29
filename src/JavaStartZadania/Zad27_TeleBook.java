@@ -41,9 +41,14 @@ public class Zad27_TeleBook {
         contactsMap.put(contact.getContactName(), contact);
     }
 
-    public void removeContact(String contactString) {
-        contacts.removeIf(c -> c.getContactName() == contactString);
-        contactsMap.remove(contactString);
+    public void removeContact(List<Zad27_Contact> listContactsToRemove) {
+        for (Zad27_Contact c : listContactsToRemove
+        ) {
+            String contactString = c.getContactName();
+            contacts.removeIf(cRemove -> cRemove.getContactName().equals(contactString));
+            contactsMap.remove(contactString);
+
+        }
     }
 
     public List<Zad27_Contact> findContact(String contactToFind) {
