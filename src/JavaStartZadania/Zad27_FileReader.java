@@ -11,9 +11,9 @@ public class Zad27_FileReader {
     final static String filePath = "C:\\Users\\Dell\\IdeaProjects\\JavaStartZadania\\src\\ContactBook.csv";
     static File file = new File(filePath);
 
-    public static void createOrFindFile() throws IOException {
+    public static void createOrFindFile( ) throws IOException {
         if (fileExists(file)) {
-            openFileAndSendDataToMap();
+            openFileAndSendData();
         } else {
             createFile();
             createOrFindFile();
@@ -24,7 +24,8 @@ public class Zad27_FileReader {
         return (file.isFile());
     }
 
-    public static List<Zad27_Contact> openFileAndSendDataToMap() throws FileNotFoundException {
+    public static List<Zad27_Contact> openFileAndSendData()
+            throws FileNotFoundException {
         Scanner sc = new Scanner(file);
         List<Zad27_Contact> contactsList = new ArrayList<>();
         try {

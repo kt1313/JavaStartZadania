@@ -9,7 +9,7 @@ public class Zad27_TeleBook {
 //    usuwania istniejącego kontaktu po nazwie oraz wyszukiwania kontaktów po fragmencie nazwy lub numeru telefonu
 
     private Map<String, Zad27_Contact> contactsMap = new TreeMap<>();
-   // public List<Zad27_Contact> contacts = new ArrayList<>();
+    // public List<Zad27_Contact> contacts = new ArrayList<>();
 
 //    //tworzymy dwie listy: nazw i numerow, aby latwiej szukac
 //    List<String> contactNames = new ArrayList<String>();
@@ -22,7 +22,7 @@ public class Zad27_TeleBook {
         this.contactsMap = contactsMap;
     }
 
-//    private void createStringArrayForNamesAndNumbers() {
+    //    private void createStringArrayForNamesAndNumbers() {
 //        for (Zad27_Contact c : contacts
 //        ) {
 //            contactNames.add(c.contactName);
@@ -32,6 +32,12 @@ public class Zad27_TeleBook {
 //            contactNumbers.add(c.contactNr);
 //        }
 //    }
+public void addContacts(List<Zad27_Contact> contactsList){
+    for (Zad27_Contact c : contactsList
+    ) {
+        contactsMap.put(c.getContactName(), c);
+    }
+}
 
     public void addNewContact(Zad27_Contact contact) {
         if (contact.getContactName() == null || contact.getContactNr() == null || contact.getContactName().isEmpty()
@@ -45,8 +51,9 @@ public class Zad27_TeleBook {
         for (Zad27_Contact c : listContactsToRemove
         ) {
             String contactString = c.getContactName();
-           // contacts.removeIf(cRemove -> cRemove.getContactName().equals(contactString));
+            // contacts.removeIf(cRemove -> cRemove.getContactName().equals(contactString));
             contactsMap.remove(contactString);
+            printBook();
 
         }
     }
@@ -72,10 +79,11 @@ public class Zad27_TeleBook {
     }
 
     public void printBook() {
-        System.out.println(contactsMap.values().toString());
+        System.out.println(contactsMap.toString());
 //        for (Zad27_Contact c : contacts
 //        ) {
 //            System.out.println(c.contactName + " " + c.getContactNr());
 //        }
     }
+
 }

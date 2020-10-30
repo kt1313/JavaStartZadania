@@ -24,4 +24,9 @@ public class Zad27_Contact {
     public void setContactNr(String contactNr) {
         this.contactNr = contactNr;
     }
+
+    @Override
+    public String toString() {
+        return (" "+ getContactNr() + '\n');
+    }
 }
