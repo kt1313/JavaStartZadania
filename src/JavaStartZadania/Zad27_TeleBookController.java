@@ -8,9 +8,9 @@ public class Zad27_TeleBookController {
     private static Scanner sc = new Scanner(System.in);
     private static Zad27_TeleBook teleBook = new Zad27_TeleBook();
 
-    public Zad27_TeleBookController (Zad27_TeleBook teleBook){
-        this.teleBook=teleBook;
-    }
+//    public Zad27_TeleBookController (Zad27_TeleBook teleBook){
+//        this.teleBook=teleBook;
+//    }
     public Zad27_TeleBookController(){}
 
     static void mainLoop() throws IOException {
@@ -20,7 +20,7 @@ public class Zad27_TeleBookController {
             startOption(option);
             mainLoop();
         }
-        Zad27_FileWriter.saveData();
+        Zad27_FileWriter.saveData(teleBook.printBook());
         System.exit(0);
     }
 
@@ -51,6 +51,9 @@ public class Zad27_TeleBookController {
             case REMOVE:
                 String findToRemove = getContactToFindData();
                 teleBook.removeContact(teleBook.findContact(findToRemove));
+                break;
+            case PRINT:
+                teleBook.printBook();
                 break;
         }
     }

@@ -4,7 +4,7 @@ import java.util.NoSuchElementException;
 
 enum Zad27_Options {
     ADD(0, "dodaj kontakt"), FIND(1, "szukaj kontaktu"),
-    REMOVE(2, "usuń kontakt"), EXIT(3, "wyjście z programu");
+    REMOVE(2, "usuń kontakt"), PRINT(3, "pokaż kontakty"),EXIT(4, "wyjście z programu");
     private int optionNr;
     private String description;
 

@@ -78,12 +78,14 @@ public void addContacts(List<Zad27_Contact> contactsList){
         return result;
     }
 
-    public void printBook() {
+    public Map<String, Zad27_Contact> printBook() {
         System.out.println(contactsMap.toString());
 //        for (Zad27_Contact c : contacts
 //        ) {
 //            System.out.println(c.contactName + " " + c.getContactNr());
 //        }
+
+    return contactsMap;
     }
 
 }
