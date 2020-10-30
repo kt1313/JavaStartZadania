@@ -18,6 +18,7 @@ public class Zad27_TeleBookController {
         Zad27_Options option=chooseOption(choice);
         while (option != Zad27_Options.EXIT) {
             startOption(option);
+            teleBook.printBook();
             mainLoop();
         }
         Zad27_FileWriter.saveData(teleBook.printBook());

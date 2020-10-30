@@ -14,6 +14,7 @@ public class Zad27_FileReader {
     public static void createOrFindFile( ) throws IOException {
         if (fileExists(file)) {
             openFileAndSendData();
+
         } else {
             createFile();
             createOrFindFile();
@@ -39,6 +40,7 @@ public class Zad27_FileReader {
                 contactsList.add(contact);
             }
         } catch (Exception e) {
+            System.out.println("nie udało się wczytać pliku");
             e.printStackTrace();
         }
         sc.close();

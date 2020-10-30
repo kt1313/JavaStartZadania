@@ -15,11 +15,10 @@ public class Zad27_FileWriter {
         ) {
             //tu ma leciec po contactsMapie i write() do File'a
             for (Map.Entry<String, Zad27_Contact> e : contactsMap.entrySet()){
-                String key = e.getKey();
-                String value = e.getValue().getContactNr();
-                writer.write(key + value);
+                String line = e.getKey()+ ", "+ e.getValue().getContactNr();
+               writer.write(line);
                 writer.newLine();
-                System.out.println(key + " => " + value);
+                //System.out.println(key + " => " + value);
             }
 
         } catch (IOException e) {
