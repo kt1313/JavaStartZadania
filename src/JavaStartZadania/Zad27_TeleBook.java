@@ -32,10 +32,12 @@ public class Zad27_TeleBook {
         try {
             for (Map.Entry<String, Zad27_Contact> e : contactsMap.entrySet()) {
                 if (e.getKey().equals(contact.getContactName())) {
-                    throw new NamingException("Ta sama nazwa!");
+                    throw new NamingException("...");
                 }
             }
-        }catch (Exception e){throw new NamingException("Ta sama nazwa!");}
+        } catch (Exception e) {
+            throw new NamingException("Ta sama nazwa!");
+        }
         contactsMap.put(contact.getContactName(), contact);
     }
 
@@ -50,7 +52,7 @@ public class Zad27_TeleBook {
     }
 
     public List<Zad27_Contact> findContact(String contactToFind) {
-        List<Zad27_Contact> result = new ArrayList<Zad27_Contact>();
+        List<Zad27_Contact> result = new ArrayList<>();
         for (String str : contactsMap.keySet()) {
             if (str.toLowerCase().contains(contactToFind.toLowerCase())) {
                 result.add(contactsMap.get(str));
@@ -61,11 +63,16 @@ public class Zad27_TeleBook {
                 result.add(c);
             }
         }
-        for (Zad27_Contact c : result
-        ) {
-            System.out.println(c.getContactName() + " " + c.getContactNr());
-            System.out.println();
+        System.out.println("Znalezione kontakty:");
+        if (result.size() > 0) {
+            for (Zad27_Contact c : result
+            ) {
+                System.out.println(c.getContactName() + " " + c.getContactNr());
+            }
+        }else{
+            System.out.println("Nie znaleziono podanego kontaktu.");
         }
+        System.out.println();
         return result;
     }
 
