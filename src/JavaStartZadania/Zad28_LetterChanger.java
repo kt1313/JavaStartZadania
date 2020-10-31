@@ -1,4 +1,5 @@
 package JavaStartZadania;
+
 import java.util.Scanner;
 
 class Zad28_LetterChanger {
@@ -8,9 +9,9 @@ class Zad28_LetterChanger {
         int numberOfWords = getNumberOfWords();
         String[] words = readWords(numberOfWords);
         String change = readChangeString();
-        if (change == "upper") {
+        if (change.equals("upper")) {
             changeWordsToUpperCase(words);
-        } else if(change == "lower") {
+        } else if (change.equals("lower")) {
             changeWordsToLowerCase(words);
         } else {
             System.out.println("Nieprawidłowy tekst, zostawiam oryginalny tekst");
@@ -30,21 +31,28 @@ class Zad28_LetterChanger {
     }
 
     private static void changeWordsToLowerCase(String[] words) {
+        String newWord;
+        int i=0;
         for (String word : words) {
-            word.toLowerCase();
+             newWord=word.toLowerCase();
+             words[i]=newWord;
+             i++;
         }
     }
 
     private static void changeWordsToUpperCase(String[] words) {
+        String newWord;
+        int i=0;
         for (String word : words) {
-            word.toUpperCase();
-        }
+            newWord=word.toUpperCase();
+            words[i]=newWord;
+            i++;        }
     }
 
     private static String[] readWords(int size) {
         String[] result = new String[size];
         for (int i = 0; i < result.length; i++) {
-            System.out.println("Podaj wyraz numer " + (i+1));
+            System.out.println("Podaj wyraz numer " + (i + 1));
             result[i] = scanner.nextLine();
         }
         return result;
@@ -52,7 +60,7 @@ class Zad28_LetterChanger {
 
     private static int getNumberOfWords() {
         System.out.println("Ile wyrazów chcesz wczytać?");
-        int wordsNr= scanner.nextInt();
+        int wordsNr = scanner.nextInt();
         scanner.nextLine();
         return wordsNr;
     }
