@@ -1,5 +1,6 @@
 package JavaStartZadania;
 
+import javax.naming.NamingException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -13,7 +14,7 @@ public class Zad27_TeleBookController {
 //    }
     public Zad27_TeleBookController(){}
 
-    static void mainLoop() throws IOException {
+    static void mainLoop() throws IOException, NamingException {
         int choice = showOptions();
         Zad27_Options option=chooseOption(choice);
         while (option != Zad27_Options.EXIT) {
@@ -39,7 +40,7 @@ public class Zad27_TeleBookController {
         return Zad27_Options.changeIntToOption(choice);
     }
 
-    static void startOption(Zad27_Options option) {
+    static void startOption(Zad27_Options option) throws NamingException {
         switch (option) {
             case ADD:
                 Zad27_Contact contact = getContactData();

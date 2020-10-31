@@ -47,7 +47,7 @@ public class Zad27_FileReader {
         return contactsList;
     }
 
-    public static boolean createFile() throws IOException {
+    public static boolean createFile() {
         File file = new File(filePath);
         boolean fileExists = file.exists();
         try {

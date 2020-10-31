@@ -1,5 +1,6 @@
 package JavaStartZadania;
 
+import javax.naming.NamingException;
 import java.util.*;
 
 public class Zad27_TeleBook {
@@ -9,11 +10,6 @@ public class Zad27_TeleBook {
 //    usuwania istniejącego kontaktu po nazwie oraz wyszukiwania kontaktów po fragmencie nazwy lub numeru telefonu
 
     private Map<String, Zad27_Contact> contactsMap = new TreeMap<>();
-    // public List<Zad27_Contact> contacts = new ArrayList<>();
-
-//    //tworzymy dwie listy: nazw i numerow, aby latwiej szukac
-//    List<String> contactNames = new ArrayList<String>();
-//    List<String> contactNumbers = new ArrayList<String>();
 
     public Zad27_TeleBook() {
     }
@@ -22,28 +18,24 @@ public class Zad27_TeleBook {
         this.contactsMap = contactsMap;
     }
 
-    //    private void createStringArrayForNamesAndNumbers() {
-//        for (Zad27_Contact c : contacts
-//        ) {
-//            contactNames.add(c.contactName);
-//        }
-//        for (Zad27_Contact c : contacts
-//        ) {
-//            contactNumbers.add(c.contactNr);
-//        }
-//    }
-public void addContacts(List<Zad27_Contact> contactsList){
-    for (Zad27_Contact c : contactsList
-    ) {
-        contactsMap.put(c.getContactName(), c);
+    public void addContacts(List<Zad27_Contact> contactsList) {
+        for (Zad27_Contact c : contactsList
+        ) {
+            contactsMap.put(c.getContactName(), c);
+        }
     }
-}
 
-    public void addNewContact(Zad27_Contact contact) {
+    public void addNewContact(Zad27_Contact contact) throws NamingException {
         if (contact.getContactName() == null || contact.getContactNr() == null || contact.getContactName().isEmpty()
                 || contact.getContactNr().isEmpty())
             throw new NullPointerException("Nie zostawiaj pustych danych!");
-        //contacts.add(contact);
+        try {
+            for (Map.Entry<String, Zad27_Contact> e : contactsMap.entrySet()) {
+                if (e.getKey().equals(contact.getContactName())) {
+                    throw new NamingException("Ta sama nazwa!");
+                }
+            }
+        }catch (Exception e){throw new NamingException("Ta sama nazwa!");}
         contactsMap.put(contact.getContactName(), contact);
     }
 
@@ -51,7 +43,6 @@ public void addContacts(List<Zad27_Contact> contactsList){
         for (Zad27_Contact c : listContactsToRemove
         ) {
             String contactString = c.getContactName();
-            // contacts.removeIf(cRemove -> cRemove.getContactName().equals(contactString));
             contactsMap.remove(contactString);
             printBook();
 
@@ -80,12 +71,7 @@ public void addContacts(List<Zad27_Contact> contactsList){
 
     public Map<String, Zad27_Contact> printBook() {
         System.out.println(contactsMap.toString());
-//        for (Zad27_Contact c : contacts
-//        ) {
-//            System.out.println(c.contactName + " " + c.getContactNr());
-//        }
-
-    return contactsMap;
+        return contactsMap;
     }
 
 }
